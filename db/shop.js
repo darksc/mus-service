@@ -56,8 +56,6 @@ const Shop = sequelize.define('shops', {
   }
 })
 
-Shop.sync().then(() => {
-  return Shop
-})
+Shop.sync()
 
 module.exports = Shop

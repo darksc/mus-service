@@ -9,7 +9,6 @@ const logger = require('koa-logger')
 const sequelize = require('./db/connect')
 
 const index = require('./routes/index')
-const users = require('./routes/users')
 
 // error handler
 onerror(app)
@@ -36,7 +35,6 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 
 sequelize
   .authenticate()
