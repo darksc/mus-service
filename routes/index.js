@@ -15,7 +15,18 @@ router.get('/shops', async (ctx, next) => {
 
 router.get('/shop', async (ctx, next) => {
   const id = ctx.query['id']
-  await Shop.findAll({
+  await Shop.findOne({
+    where: {
+      id: id
+    }
+  }).then(shop => {
+    ctx.body = shop
+  })
+})
+
+router.post('/add', async (ctx, next) => {
+  const id = ctx.query['id']
+  await Shop.save({
     where: {
       id: id
     }
