@@ -1,5 +1,6 @@
 const router = require('koa-router')()
-const uuidV4 = require('uuid/v4');
+const uuidV4 = require('uuid/v4')
+const fetch = require('node-fetch')
 const Shop = require('../db/shop')
 
 router.get('/', async (ctx, next) => {
@@ -48,6 +49,15 @@ router.post('/add', async (ctx, next) => {
     .save()
     .then(shop => {
 
+    })
+})
+
+router.get('/getOpenId', async (ctx, next) => {
+  // const id = ctx.query['code']
+  await fetch('https://www.easy-mock.com/mock/5937522591470c0ac106a9f1/mus/shop', { method: 'GET'})
+    .then(res => res.json())
+    .then(json => {
+      ctx.body = json
     })
 })
 
