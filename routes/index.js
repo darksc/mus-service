@@ -53,10 +53,15 @@ router.post('/add', async (ctx, next) => {
 })
 
 router.get('/getOpenId', async (ctx, next) => {
-  // const id = ctx.query['code']
-  await fetch('https://www.easy-mock.com/mock/5937522591470c0ac106a9f1/mus/shop', { method: 'GET'})
+  const code = ctx.query['code']
+  const appid = 'wx2ac89fd89e184752'
+  const secret = '5ff66fda941bbf4f23b0062cdcb11cbc'
+  const grant_type = 'authorization_code'
+  console.log(code)
+  await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
+      console.log(json)
       ctx.body = json
     })
 })
