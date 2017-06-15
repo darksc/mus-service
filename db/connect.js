@@ -3,7 +3,7 @@
  */
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('mus', 'root', 'root', {
+const sequelize = new Sequelize('mus', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   define: {

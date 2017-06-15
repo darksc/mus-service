@@ -3,10 +3,8 @@ const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+router.get('/', (ctx, next) => {
+  ctx.body = '1'
 })
 
 router.get('/shops', async (ctx, next) => {
