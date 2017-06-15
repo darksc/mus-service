@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 const Shop = require('../db/shop')
 
 router.get('/', (ctx, next) => {
-  ctx.body = '1'
+  ctx.body = '<h1 style="text-align: center">钓鱼岛小程序服务接口</h1>'
 })
 
 router.get('/shops', async (ctx, next) => {
