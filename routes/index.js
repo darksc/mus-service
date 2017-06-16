@@ -51,11 +51,11 @@ router.post('/add', async (ctx, next) => {
 })
 
 router.get('/getOpenId', async (ctx, next) => {
-  const code = ctx.query['code']
-  const appid = 'wx2ac89fd89e184752'
-  const secret = '5ff66fda941bbf4f23b0062cdcb11cbc'
-  const grant_type = 'authorization_code'
-  console.log(code)
+  const code = ctx.query['code'],
+        appid = 'wx2ac89fd89e184752',
+        secret = '5ff66fda941bbf4f23b0062cdcb11cbc',
+        grant_type = 'authorization_code'
+
   await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
