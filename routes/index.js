@@ -7,12 +7,14 @@ router.get('/', (ctx, next) => {
   ctx.body = '<h1 style="text-align: center">钓鱼岛小程序服务接口</h1>'
 })
 
+// 获取商店列表
 router.get('/shops', async (ctx, next) => {
   await Shop.findAll().then(shops => {
     ctx.body = shops
   })
 })
 
+// 获取商店详情
 router.get('/shop', async (ctx, next) => {
   const id = ctx.query['id']
   await Shop.findOne({
@@ -24,6 +26,7 @@ router.get('/shop', async (ctx, next) => {
   })
 })
 
+// 添加新商店
 router.post('/add', async (ctx, next) => {
   const name = ctx.body['name']
   await Shop
@@ -50,6 +53,7 @@ router.post('/add', async (ctx, next) => {
     })
 })
 
+// 获取用户openid
 router.get('/getOpenId', async (ctx, next) => {
   const code = ctx.query['code'],
         appid = 'wx2ac89fd89e184752',
