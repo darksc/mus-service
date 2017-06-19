@@ -2,6 +2,7 @@ const router = require('koa-router')()
 const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
+const response = require('../utils/response')
 
 router.get('/', (ctx, next) => {
   ctx.body = '<h1 style="text-align: center">钓鱼岛小程序服务接口</h1>'
@@ -10,7 +11,7 @@ router.get('/', (ctx, next) => {
 // 获取商店列表
 router.get('/shops', async (ctx, next) => {
   await Shop.findAll().then(shops => {
-    ctx.body = shops
+    ctx.body = response.buildRes(200, true, shops)
   })
 })
 
@@ -22,7 +23,7 @@ router.get('/shop', async (ctx, next) => {
       id: id
     }
   }).then(shop => {
-    ctx.body = shop
+    ctx.body = response.buildRes(200, true, shop)
   })
 })
 
@@ -49,7 +50,7 @@ router.post('/add', async (ctx, next) => {
     })
     .save()
     .then(shop => {
-
+      ctx.body = response.buildRes(200, true, [])
     })
 })
 
@@ -63,8 +64,7 @@ router.get('/getOpenId', async (ctx, next) => {
   await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
-      ctx.body = json
+      ctx.body = ctx.body = response.buildRes(200, true, json)
     })
 })
 
