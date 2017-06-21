@@ -2,10 +2,9 @@ const router = require('koa-router')()
 const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
-const response = require('../utils/response')
 
 router.get('/', (ctx, next) => {
-  ctx.body = '<h1 style="text-align: center">钓鱼岛小程序服务接口</h1>'
+  ctx.body = '钓鱼岛小程序服务接口'
 })
 
 // 获取商店列表
