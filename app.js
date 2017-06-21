@@ -8,6 +8,8 @@ const cors = require('koa2-cors')
 
 const sequelize = require('./db/connect')
 
+const response = require('./middlewares/response')
+
 const index = require('./routes/index')
 
 // error handler
@@ -29,6 +31,8 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
+
+app.use(response)
 
 // routes
 app.use(index.routes(), index.allowedMethods())

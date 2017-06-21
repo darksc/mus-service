@@ -11,7 +11,7 @@ router.get('/', (ctx, next) => {
 // 获取商店列表
 router.get('/shops', async (ctx, next) => {
   await Shop.findAll().then(shops => {
-    ctx.body = response.buildRes(200, true, shops)
+    ctx.body = shops
   })
 })
 
@@ -23,7 +23,7 @@ router.get('/shop', async (ctx, next) => {
       id: id
     }
   }).then(shop => {
-    ctx.body = response.buildRes(200, true, shop)
+    ctx.body = shop
   })
 })
 
@@ -50,7 +50,7 @@ router.post('/add', async (ctx, next) => {
     })
     .save()
     .then(shop => {
-      ctx.body = response.buildRes(200, true, [])
+      ctx.body = ''
     })
 })
 
@@ -64,7 +64,7 @@ router.get('/getOpenId', async (ctx, next) => {
   await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
-      ctx.body = response.buildRes(200, true, json)
+      ctx.body = json
     })
 })
 
