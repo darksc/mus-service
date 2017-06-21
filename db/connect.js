@@ -1,6 +1,3 @@
-/**
- * Created by darK on 2017/6/10.
- */
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize('mus', 'root', '', {
