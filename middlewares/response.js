@@ -1,3 +1,4 @@
+// 接口返回数据格式化
 module.exports = async (ctx, next) => {
   try {
     await next()
