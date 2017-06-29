@@ -1,3 +1,4 @@
+// 拓展异常类
 const ErrorNames = require('./ErrorNames')
 module.exports = class ApiErrors extends Error{
   constructor(error_name){

@@ -1,3 +1,4 @@
+// 异常类型
 let ErrorNames = {}
 
 // names 常量
