@@ -32,7 +32,7 @@ router.get('/shop', async (ctx, next) => {
   })
 })
 
-// 添加新商店
+// 添加新商店 TODO 需要做事物处理
 router.post('/add', async (ctx, next) => {
   const name = ctx.body['name']
   await Shop
