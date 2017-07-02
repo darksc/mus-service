@@ -17,6 +17,7 @@ module.exports = async (ctx, next) => {
       }
     }
   } catch (error) {
+    // 异常处理
     if(error instanceof ApiError){
       ctx.status = 200;
       ctx.body = {
