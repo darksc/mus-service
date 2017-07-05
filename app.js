@@ -5,6 +5,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const cors = require('koa2-cors')
+const compress = require('koa-compress')
 
 const sequelize = require('./db/connect')
 
@@ -26,6 +27,8 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 // 跨域
 app.use(cors())
+// 开启 Gzip
+app.use(compress())
 
 // logger
 app.use(async (ctx, next) => {
