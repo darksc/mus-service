@@ -7,8 +7,6 @@ const logger = require('koa-logger')
 const cors = require('koa2-cors')
 const compress = require('koa-compress')
 
-const sequelize = require('./db/connect')
-
 const response = require('./middlewares/response')
 
 const index = require('./routes/index')
