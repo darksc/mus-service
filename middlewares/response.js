@@ -12,7 +12,7 @@ module.exports = async (ctx, next) => {
       }
     } else {
       ctx.body = {
-        code: 200,
+        code: 404,
         message: 'success'
       }
     }
