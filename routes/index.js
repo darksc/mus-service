@@ -66,6 +66,10 @@ router.get('/getOpenId', async (ctx, next) => {
         secret = '5ff66fda941bbf4f23b0062cdcb11cbc',
         grant_type = 'authorization_code'
 
+  if (!code) {
+    throw new ApiError(ErrorNames.MISSING_PARAMETER_CODE)
+  }
+
   await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
