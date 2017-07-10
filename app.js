@@ -20,8 +20,11 @@ app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
 app.use(json())
+// 日志处理
 app.use(logger())
+// 静态文件
 app.use(require('koa-static')(__dirname + '/public'))
+// 跨域
 app.use(cors())
 
 // logger
@@ -37,6 +40,7 @@ app.use(async (ctx, next) => {
 
 })
 
+// 格式化 和 自定义异常
 app.use(response)
 
 // routes

@@ -1,4 +1,6 @@
 // 接口返回数据格式化
+const ApiError = require('./ApiError')
+
 module.exports = async (ctx, next) => {
   try {
     await next()
@@ -15,6 +17,14 @@ module.exports = async (ctx, next) => {
       }
     }
   } catch (error) {
-    console.log(error)
+    // 异常处理
+    if(error instanceof ApiError){
+      ctx.status = 200;
+      ctx.body = {
+        code: error.code,
+        message: error.message
+      }
+    }
+    throw error
   }
 }

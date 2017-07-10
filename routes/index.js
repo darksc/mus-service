@@ -3,6 +3,9 @@ const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
 
+const ApiError = require('../middlewares/ApiError')
+const ErrorNames = require('../middlewares/ErrorNames')
+
 router.get('/', (ctx, next) => {
   ctx.body = '钓鱼岛小程序服务接口'
 })
@@ -17,6 +20,9 @@ router.get('/shops', async (ctx, next) => {
 // 获取商店详情
 router.get('/shop', async (ctx, next) => {
   const id = ctx.query['id']
+  if (!id) {
+    throw new ApiError(ErrorNames.MISSING_PARAMETER_ID)
+  }
   await Shop.findOne({
     where: {
       id: id
@@ -26,7 +32,7 @@ router.get('/shop', async (ctx, next) => {
   })
 })
 
-// 添加新商店
+// 添加新商店 TODO 需要做事物处理
 router.post('/add', async (ctx, next) => {
   const name = ctx.body['name']
   await Shop
