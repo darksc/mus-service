@@ -60,6 +60,10 @@ router.post('/add', async (ctx, next) => {
 })
 
 // 获取用户openid
+/**
+ * 获取用户 openid
+ * @param code 用户允许登录后，回调内容会带上 code（有效期五分钟）
+ */
 router.get('/getOpenId', async (ctx, next) => {
   const code = ctx.query['code'],
         appid = 'wx2ac89fd89e184752',
