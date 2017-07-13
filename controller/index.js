@@ -3,13 +3,13 @@ const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
 
-module.exports = async function shopsService (ctx, next) {
+async function shopsService (ctx, next) {
   await Shop.findAll().then(shops => {
     ctx.body = shops
   })
 }
 
-module.exports = async function shopService (ctx, next) {
+async function shopService (ctx, next) {
   const id = ctx.query['id']
   await Shop.findOne({
     where: {
@@ -20,7 +20,7 @@ module.exports = async function shopService (ctx, next) {
   })
 }
 
-module.exports = async function addShopService (ctx, next) {
+async function addShopService (ctx, next) {
   await Shop
     .build({
       id: 'mus' + uuidV4(),
@@ -45,15 +45,26 @@ module.exports = async function addShopService (ctx, next) {
     })
 }
 
-module.exports = async function getOpenId (ctx, next) {
+async function getOpenId (ctx, next) {
   const code = ctx.query['code'],
     appid = 'wx2ac89fd89e184752',
     secret = '5ff66fda941bbf4f23b0062cdcb11cbc',
     grant_type = 'authorization_code'
+
+  if (!code) {
+    throw new ApiError(ErrorNames.MISSING_PARAMETER_CODE)
+  }
 
   await fetch(`https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=${grant_type}`)
     .then(res => res.json())
     .then(json => {
       ctx.body = json
     })
+}
+
+module.exports = {
+  shopsService,
+  shopService,
+  addShopService,
+  getOpenId
 }
