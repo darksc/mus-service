@@ -1,11 +1,4 @@
 const router = require('koa-router')()
-const uuidV4 = require('uuid/v4')
-const fetch = require('node-fetch')
-const Shop = require('../db/shop')
-
-const ApiError = require('../middlewares/ApiError')
-const ErrorNames = require('../middlewares/ErrorNames')
-
 const controller = require('../controller/')
 
 console.log(controller)

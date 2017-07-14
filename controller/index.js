@@ -1,7 +1,9 @@
-
 const uuidV4 = require('uuid/v4')
 const fetch = require('node-fetch')
 const Shop = require('../db/shop')
+
+const ApiError = require('../middlewares/ApiError')
+const ErrorNames = require('../middlewares/ErrorNames')
 
 async function shopsService (ctx, next) {
   await Shop.findAll().then(shops => {
