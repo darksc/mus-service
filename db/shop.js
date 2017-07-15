@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./connect')
 
+// 商户实体
 const Shop = sequelize.define('shops', {
   // 唯一标识
   id: {

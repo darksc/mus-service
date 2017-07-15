@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./connect')
 
+// 用户实体
 const User = sequelize.define('users', {
   // 唯一标识
   id: {

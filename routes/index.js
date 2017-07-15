@@ -1,8 +1,6 @@
 const router = require('koa-router')()
 const controller = require('../controller/')
 
-console.log(controller)
-
 router.get('/', (ctx, next) => {
   ctx.body = '钓鱼岛小程序服务接口'
 })
